@@ -118,7 +118,7 @@
 
 				<section>
           <h2>Example (Cucumber)<h2>
-					<pre><code style="font-size: 18px">
+					<pre style="line-height:0.7em"><code class="cucumber" style="font-size: 18px">
 Given a Teacher is logged in
 And the Teacher has a Playlist with three items
 When the user copies the Playlist to the "Potions" course
@@ -165,7 +165,7 @@ end
 
 				<section>
           <h2>Write a red test<h2>
-					<pre style="line-height:0.4em"><code class="ruby" style="font-size: 16px">
+					<pre style="line-height:0.5em"><code class="ruby" style="font-size: 18px">
 When /the user copies the Playlist to the "Potions" course/ do
   copy_playlist_to_course 'Copied Bacon', course_name
 end
@@ -190,6 +190,22 @@ end
           <p>"When" describes the action, but there's nothing to interact with!</p>
           <aside class="notes">
             Start by adding a button, dialog or any other way to interact with the application.
+          </aside>
+        </section>
+
+        <section>
+          <h2>Then</h2>
+					<pre style="line-height:1.3em"><code class="ruby" style="font-size: 18px">
+def verify_playlist_exists playlist_name
+  playlist_element(playlist_name).should be_present
+end
+
+def playlist_element playlist_name
+  page.find('.playlist-nav ul li.droppable', text: playlist_name)
+end
+          </code></pre>
+          <aside class="notes">
+            The postcondition.
           </aside>
         </section>
 
