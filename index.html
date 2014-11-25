@@ -63,6 +63,12 @@
             <li class="fragment">Testing styles (unit, integration)</li>
             <li class="fragment">TDD != Unit testing</li>
           </ul>
+          <aside class="notes">
+            The recent DHH driven anti TDD tests were almost entirely about
+            unit testing and mocking. This is unfortunate because mocking and
+            TDD are separate ideas that were developed independently. TDD
+            introduced in 1994. Mocks introduced in 2000.
+          </aside>
         </section>
 
         <section>
@@ -73,6 +79,16 @@
             <li class="fragment">Verifies assumptions</li>
             <li class="fragment">Front loads production challenges</li>
           </ul>
+          <aside class="notes">
+            TDD is useful and test isolation is useful, but they both involve
+            making trade-offs. Unfortunately, doing them 100% of the time seems
+            to be the best way to learn what those trade-offs are, and that can
+            temporarily lead beginners toward extremism. TDD and isolation both
+            break down in some situations, and learning to detect those
+            situations in advance takes a lot of time. This is true of advanced
+            techniques in any discipline, programming or otherwise. That is the
+            honest, non-exaggerated, no-lies-involved truth.
+          </aside>
         </section>
 
         <section>
@@ -81,7 +97,7 @@
         </section>
 
         <section>
-          <h2>Outside In</h2>
+          <h2>Outside In / Domain Driven</h2>
           <p>It's useful to think as a software systems as layered.<p>
         </section>
 
@@ -103,6 +119,15 @@
           <span class="fragment">Message Queue</span>
           <hr class="fragment"/>
           <span class="fragment">Database</span>
+          <aside class="notes">
+            Language gets increasingly technical as you go down the layers. At
+            the surface is the language of the application's domain.
+
+            User, Playlist, click, scroll.
+
+            Extend even further and you'd get disk storage, IO, sector, BIOS,
+            register, gates.
+          </aside>
         </section>
 
 				<section>
@@ -113,6 +138,14 @@
           </ul>
           <aside class="notes">
             "Sunshine road" is how Mykola a former Thoughtworker would say "happy path"
+
+            We write the acceptance test using only terminology from the
+            application’s domain, not from the underlying technologies (such as
+            databases or web servers).
+
+            This helps us understand what the system should do, without tying us
+            to any of our initial assumptions about the implementation or
+            complicating the test with technological details.
           </aside>
 				</section>
 
@@ -306,6 +339,7 @@ end
 				progress: true,
 				history: true,
 				center: true,
+        overview: true,
 
 				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
 				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
