@@ -133,7 +133,9 @@ Then the Playlist is available in the "Potions" course
             <li>C = command</li>
             <li>Q = postcondition</li>
           </ul>
-          <p class="fragment">Whenever P holds of the state before the execution of C, then Q will hold afterwards<span class="fragment"> or C does not terminate</span></p>
+          <p class="fragment">Whenever P holds of the state before the
+          execution of C, then Q will hold afterwards<span class="fragment"> or
+          C does not terminate</span></p>
         </section>
 
 				<section>
@@ -146,6 +148,16 @@ Then the Playlist is available in the "Potions" course
           <p class="fragment">Context/Action/Outcome<p>
         </section>
 
+        <section>
+          <h2>Given</h2>
+          <p>The setup - composed using actions you know to work.</p>
+          <aside class="notes">
+            P, i.e. your precondition. Should be assumed to work, as in the
+            case of Hoare logic. i.e. it is an axiom - something you take for
+            granted.
+          </aside>
+        </section>
+
 				<section>
           <h2>Getting it (just) right<h2>
 					<pre style="line-height:0.7em"><code style="font-size: 18px">
@@ -154,10 +166,6 @@ When /the user copies the Playlist to the "Potions" course/ do
 end
           </code></pre>
           <aside class="notes">
-            P, i.e. your precondition. Should be assumed to work, as in the
-            case of Hoare logic. i.e. it is an axiom - something you take for
-            granted.
-
             Make sure when it fails, it provides a diagnostic that would help
             you diagnose the problem in the future.
           </aside>
