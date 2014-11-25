@@ -39,7 +39,7 @@
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-        <section>
+        <section style="align: left">
           <h1>T<span class="fragment">est</span></h1>
           <h1>D<span class="fragment">riven</span></h1>
           <h1>D<span class="fragment">evelopment</span></h1>
@@ -59,10 +59,25 @@
           <h2>What is this talk <em>NOT</em> about?</h2>
           <ul>
             <li class="fragment">The testing pyramid</li>
-            <li class="fragment">Testing strategies (unit, integration)</li>
+            <li class="fragment">Testing strategies</li>
             <li class="fragment">Testing styles (unit, integration)</li>
             <li class="fragment">TDD != Unit testing</li>
           </ul>
+        </section>
+
+        <section>
+          <h2>When</h2>
+          <p>Try to TDD <em>everything</em></p>
+          <ul>
+            <li class="fragment">Encourages automation</li>
+            <li class="fragment">Verifies assumptions</li>
+            <li class="fragment">Front loads production challenges</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>The Walking Skeleton</h2>
+          <p>Test the entire cycle end-to-end: build, deploy and operate.</p>
         </section>
 
         <section>
@@ -133,7 +148,7 @@ Then the Playlist is available in the "Potions" course
 
 				<section>
           <h2>Getting it (just) right<h2>
-					<pre><code style="font-size: 18px">
+					<pre style="line-height:0.7em"><code style="font-size: 18px">
 When /the user copies the Playlist to the "Potions" course/ do
   debugger
 end
@@ -142,7 +157,32 @@ end
             P, i.e. your precondition. Should be assumed to work, as in the
             case of Hoare logic. i.e. it is an axiom - something you take for
             granted.
+
+            Make sure when it fails, it provides a diagnostic that would help
+            you diagnose the problem in the future.
           </aside>
+        </section>
+
+				<section>
+          <h2>Write a red test<h2>
+					<pre style="line-height:0.4em"><code class="ruby" style="font-size: 16px">
+When /the user copies the Playlist to the "Potions" course/ do
+  copy_playlist_to_course 'Copied Bacon', course_name
+end
+
+def copy_playlist_to_course name, course
+  open_copy_modal
+  select_course_from_modal course
+  enter_playlist_name name
+  click_action_button
+end
+
+def open_copy_modal
+  page.find('#playlist-header-name i').click
+  page.find('#copy-playlist-action').click
+  page.should have_css('.modal-content')
+end
+          </code></pre>
         </section>
 
 				<section>
@@ -156,11 +196,27 @@ end
         <section>
           <h2>Moving down the stack</h2>
           <p>Fill in the layers as you move down the stack.</p>
+          <p>DTSTTCPW - Do the simplest thing that could possibly work.</p>
+        </section>
+
+        <section>
+          <h2>Avoid Mocks</h2>
+          <p>Mocks are a necessary evil, but where possible you should avoid them:</p>
+          <ul>
+            <li class="fragment">Don't mock value objects</li>
+            <li class="fragment">Write functions where possible</li>
+            <li class="fragment">Stub IO</li>
+          </ul>
         </section>
 
         <section>
           <h2>Move back up the stack</h2>
           <p>Keep going until the entire scenario is green.</p>
+        </section>
+
+        <section>
+          <h2>Adding failure cases</h2>
+          <p>When you have returned to the top.
         </section>
 
         <section>
@@ -212,7 +268,6 @@ end
           time. More reliable software. Easier to test and grow software.
       </section>
 			</div>
-
 		</div>
 
 		<script src="lib/js/head.min.js"></script>
